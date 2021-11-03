@@ -17,6 +17,9 @@ router.get('/list', CustomersController.listUsers)
 router.get('/edit', CustomersController.indexEdit)
 router.post('/edit/:id', CustomersController.edit)
 
+//remover usuarios
+router.get('/remove/:id', CustomersController.removeUser)
+
 router.use((req, res) => {
   //pagina de erro 404
   res.send("Página não encontrada");

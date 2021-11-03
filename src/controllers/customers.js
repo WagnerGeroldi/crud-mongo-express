@@ -3,7 +3,7 @@ const CustomersModel = require("../models/customers");
 const { crypto } = require("../utils/password");
 
 function index(req, res) {
-    const { cadastro } = req.query;
+  const { cadastro } = req.query;
   res.render("register", {
     title: "Registro de Clientes",
     cadastro,
@@ -11,7 +11,6 @@ function index(req, res) {
 }
 
 async function add(req, res) {
-   
   const { name, age, email, password } = req.body;
 
   const passwordCrypto = await crypto(password);
@@ -27,7 +26,6 @@ async function add(req, res) {
   res.redirect("/register?cadastro=ok");
 }
 
-
 async function listUsers(req, res) {
   const users = await CustomersModel.find();
 
@@ -38,37 +36,42 @@ async function listUsers(req, res) {
 }
 
 async function indexEdit(req, res) {
+  const { id } = req.query;
 
-  const { id } = req.query
+  const user = await CustomersModel.findById(id);
 
- const user = await CustomersModel.findById(id) 
-
-  res.render('edit', {
-    title: 'Editar Usuário',
+  res.render("edit", {
+    title: "Editar Usuário",
     user,
-  })
+  });
 }
 
 async function edit(req, res) {
   const { name, age, email } = req.body;
 
-  const { id } = req.params
+  const { id } = req.params;
 
-  const user = await CustomersModel.findById(id)
+  const user = await CustomersModel.findById(id);
 
-  user.name = name
-  user.age = age
-  user.email = email
+  user.name = name;
+  user.age = age;
+  user.email = email;
 
-  user.save()
+  user.save();
 
-  res.render('edit', {
-    title: 'Editar Usuário',
+  res.render("edit", {
+    title: "Editar Usuário",
     user,
-    message: "Alterado com sucesso"
-  })
+    message: "Alterado com sucesso",
+  });
+}
 
+async function removeUser(req, res) {
+  const { id } = req.params;
 
+  const remove = await CustomersModel.deleteOne({ _id: id });
+
+    res.redirect("/list");
 }
 
 module.exports = {
@@ -77,4 +80,5 @@ module.exports = {
   listUsers,
   indexEdit,
   edit,
+  removeUser,
 };
