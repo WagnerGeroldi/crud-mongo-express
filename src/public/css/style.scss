@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: rgb(216, 216, 216);
+}
+
+
+
+/* HEADER */
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: cornflowerblue;
+  border-bottom: 2px solid darkblue;
+  height: 80px;
+
+  p {
+    color: antiquewhite;
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+}
+
+nav {
+  ul {
+    display: flex;
+    gap: 20px;
+
+    li {
+      list-style: none;
+    }
+  }
+}
+
+
+/*REGISTER */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  input {
+    padding: 10px 5px;
+    width: 100%;
+    border: none;
+  }
+
+  p {
+    color: red;
+    font-weight: 800;
+  }
+}
+
+/* LISTAR */
+
